@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>Sign Up</h2>
+            <label>Email</label>
+            <input id="signup-email" type="email" placeholder="you@example.com">
+            <label>Password</label>
+            <input id="signup-pass" type="password" placeholder="password (6+ chars)">
+            <button id="signup-btn" class="btn">Create Account</button>
+            <p>Already have an account? <a href="login.html">Login</a></p>
+            <p id="signup-msg" class="msg"></p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { signupWithEmail } from './script.js';
+        const email = document.getElementById('signup-email'),
+            pass = document.getElementById('signup-pass'),
+            btn = document.getElementById('signup-btn'),
+            msg = document.getElementById('signup-msg');
+        btn.addEventListener('click', async () => {
+            msg.textContent = '';
+            try {
+                btn.disabled = true; await signupWithEmail(email.value.trim(), pass.value);
+            }
+            catch (e) {
+                msg.textContent = e.message || 'Signup failed';
+            }
+            finally {
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

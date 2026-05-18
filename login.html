@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <h2>Login</h2>
+            <label>Email</label>
+            <input id="login-email" type="email" placeholder="you@example.com">
+            <label>Password</label>
+            <input id="login-pass" type="password" placeholder="password">
+            <button id="login-btn" class="btn">Login</button>
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+            <p id="login-msg" class="msg"></p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { loginWithEmail } from './script.js';
+        const email = document.getElementById('login-email'),
+            pass = document.getElementById('login-pass'),
+            btn = document.getElementById('login-btn'),
+            msg = document.getElementById('login-msg');
+        btn.addEventListener('click', async () => {
+            msg.textContent = '';
+            try {
+                btn.disabled = true;
+                await loginWithEmail(email.value.trim(), pass.value);
+            }
+            catch (e) {
+                msg.textContent = e.message || 'Login failed';
+            }
+            finally {
+                btn.disabled = false;
+            }
+        });
+    </script>
+</body>
+
+</html>

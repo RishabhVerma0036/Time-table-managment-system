@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Time Table Dashboard — Setup</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">Time Table Dashboard</div>
+      <nav>
+        <a class="active">Setup</a>
+        <a href="timetable.html">Timetable</a>
+      </nav>
+      <div style="margin-top:20px;">
+        <button id="themeToggle" class="chip">🌙 Dark</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <h1>Setup</h1>
+      </header>
+
+      <section class="content">
+        <p style="color:#0b63a8; margin-top:0;">Add Subjects, Teachers and Rooms — these will appear in the timetable
+          dropdowns.</p>
+
+        <div class="setup-grid">
+          <div class="card">
+            <h3>Add Items</h3>
+
+            <div>
+              <label>Subject name (eg. Math)</label>
+              <input id="subjectInput" placeholder="e.g. Math">
+              <div style="height:8px"></div>
+              <button id="addSubjectBtn" class="btn primary">Add Subject</button>
+            </div>
+
+            <div style="height:12px"></div>
+
+            <div>
+              <label>Teacher name (eg. Dr. Sharma)</label>
+              <input id="teacherInput" placeholder="e.g. Dr. Sharma">
+              <div style="height:8px"></div>
+              <button id="addTeacherBtn" class="btn primary">Add Teacher</button>
+            </div>
+
+            <div style="height:12px"></div>
+
+            <div>
+              <label>Room no (eg. B201)</label>
+              <input id="roomInput" placeholder="e.g. B201">
+              <div style="height:8px"></div>
+              <button id="addRoomBtn" class="btn primary">Add Room</button>
+            </div>
+
+            <div style="margin-top:12px;">
+              <button id="goToTimetable" class="btn">Go to Timetable</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Current Lists</h3>
+            <div id="listsContainer" class="current-lists">No items yet</div>
+
+            <div style="margin-top:14px;" class="actions">
+              <button id="clearSetup" class="btn danger">Clear Setup Data</button>
+              <button id="exportSetup" class="btn">Export Setup (CSV)</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>

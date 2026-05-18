@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TT Dashboard — Timetable</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ical.js@1.4.0/build/ical.min.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">Time Table Dashboard ⌛</div>
+      <nav>
+        <a href="index.html">Setup</a>
+        <a class="active">Timetable</a>
+      </nav>
+      <div style="margin-top:18px;">
+        <button id="themeToggle" class="chip">🌙 Dark</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <h1>Timetable Calendar</h1>
+        <div class="topbar-actions">
+          <button id="exportXLSX" class="btn">Export XLSX</button>
+          <button id="exportICS" class="btn">Export .ics</button>
+          <button id="importAcadBtn" class="btn">Import Academic Calendar (.ics)</button>
+          <input id="importFile" type="file" accept=".ics" style="display:none">
+
+          <button id="backSetup" class="btn">Back to Setup</button>
+
+          <button id="logout-btn" class="btn">Logout</button>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="calendar-wrapper">
+          <div id="calendar"></div>
+        </div>
+
+        <hr />
+        <div id="eventsList">
+          <h3>Saved lectures </h3>
+          <div id="listContainer">No events yet</div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box" role="document">
+      <h2 id="modalTitle">Add & Edit lecture</h2>
+      <form id="eventForm">
+        <label>Date<br /><input id="evtDate" type="date" required></label>
+        <label>Start time<br /><input id="evtStart" type="time" required></label>
+        <label>End time<br /><input id="evtEnd" type="time" required></label>
+
+        <label>Subject<br />
+          <select id="evtSubject" required>
+            <option value="">-- Select Subject --</option>
+          </select>
+        </label>
+
+        <label>Teacher<br />
+          <select id="evtTeacher">
+            <option value="">-- Select Teacher (optional) --</option>
+          </select>
+        </label>
+
+        <label>Room<br />
+          <select id="evtRoom">
+            <option value="">-- Select Room (optional) --</option>
+          </select>
+        </label>
+
+        <div class="modal-actions">
+          <button type="submit" class="btn primary">Save</button>
+          <button type="button" id="deleteBtn" class="btn danger">Delete</button>
+          <button type="button" id="cancelBtn" class="btn">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,402 @@
+:root {
+  --sidebar-start: #06b6d4;
+  --sidebar-end: #2563eb;
+  --panel: #ffffff;
+  --page-bg: #e9f7ff;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --danger: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Inter, Arial, Helvetica, sans-serif
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  background: var(--page-bg)
+}
+
+.app {
+  display: flex;
+  min-height: 100vh
+}
+
+.sidebar {
+  width: 220px;
+  min-width: 220px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  background: linear-gradient(180deg, var(--sidebar-start), var(--sidebar-end));
+  color: #fff;
+  z-index: 10;
+}
+
+.brand {
+  font-weight: 700;
+  margin-bottom: 12px;
+  font-size: 18px
+}
+
+.sidebar nav a {
+  display: block;
+  color: rgba(255, 255, 255, 0.95);
+  padding: 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin: 8px 0
+}
+
+.sidebar nav a.active {
+  background: rgba(255, 255, 255, 0.07)
+}
+
+/* ---------- Main ---------- */
+.main {
+  margin-left: 220px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  padding: 16px 28px
+}
+
+.topbar h1 {
+  margin: 0
+}
+
+.topbar-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center
+}
+
+/* ---------- Content ---------- */
+.content {
+  padding: 18px 28px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto
+}
+
+/* center calendar wrapper */
+.calendar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px
+}
+
+#calendar {
+  max-width: 1000px;
+  width: 100%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 8px
+}
+
+/* ---------- Setup grid & cards ---------- */
+.setup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start
+}
+
+.card {
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px
+}
+
+.card h3 {
+  margin: 0 0 10px 0
+}
+
+.current-lists {
+  color: #333;
+  line-height: 1.5
+}
+
+/* ---------- Buttons & small UI ---------- */
+.btn {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 0;
+  cursor: pointer
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #fff
+}
+
+.btn.danger {
+  background: var(--danger);
+  color: #fff
+}
+
+.chip {
+  padding: 8px 12px;
+  border-radius: 16px;
+  border: 0;
+  cursor: pointer
+}
+
+/* ---------- Modal (opaque) ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal-box {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 10px;
+  width: 420px;
+  max-width: 95%;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.modal-box label {
+  display: block;
+  margin: 8px 0;
+  font-size: 13px
+}
+
+.modal-box input,
+.modal-box select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.08)
+}
+
+.modal-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 10px
+}
+
+/* ---------- Events list ---------- */
+#listContainer {
+  background: var(--panel);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06)
+}
+
+.list-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border-left: 4px solid rgba(37, 99, 235, 0.12)
+}
+
+.list-row .meta {
+  min-width: 100px;
+  text-align: center
+}
+
+.list-row .date-badge {
+  font-weight: 700;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--accent)
+}
+
+.list-row .time {
+  color: var(--muted);
+  font-size: 13px
+}
+
+.list-row .body {
+  flex: 1
+}
+
+.list-row .title {
+  font-weight: 700;
+  margin-bottom: 6px
+}
+
+.list-row .sub {
+  color: var(--muted);
+  font-size: 13px
+}
+
+.edit-btn {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  cursor: pointer
+}
+
+.holiday-bg {
+  background-color: rgba(255, 200, 0, 0.12) !important;
+}
+
+.fc .holiday-bg {
+  background-color: rgba(255, 200, 0, 0.12) !important;
+}
+
+body.dark {
+  background: #0b1220;
+  color: #e6eef8;
+}
+
+body.dark .sidebar {
+  background: linear-gradient(180deg, #0f1724, #0b1220);
+  color: #dbeafe;
+}
+
+body.dark .card,
+body.dark .modal-box,
+body.dark #calendar,
+body.dark #listContainer {
+  background: #071022;
+  color: #e6eef8;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+body.dark input,
+body.dark select {
+  background: #0b1624;
+  color: #e6eef8;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+@media (max-width:920px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto
+  }
+
+  .main {
+    margin-left: 0
+  }
+
+  .setup-grid {
+    grid-template-columns: 1fr
+  }
+
+  .calendar-wrapper {
+    padding: 0 12px
+  }
+
+  #calendar {
+    width: 100%
+  }
+
+  .topbar-actions {
+    margin-top: 12px;
+    width: 100%;
+    justify-content: flex-end
+  }
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 20px;
+  background: var(--page-bg, #f5f7fb);
+}
+
+.auth-card {
+  width: 320px;
+  background: var(--card-bg, #ffffff);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  color: var(--text-color, #111);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+.auth-card h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+
+.auth-card label {
+  display: block;
+  font-size: 13px;
+  margin-top: 8px;
+  color: #444;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 9px 10px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1px solid #d7dbe1;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.auth-card .btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-top: 14px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #2185ff, #0066ff);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.auth-card .btn:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.auth-card .msg {
+  color: #c02323;
+  margin-top: 10px;
+  font-size: 13px;
+}
+
+@media (max-width:420px) {
+  .auth-card {
+    width: 92%;
+    padding: 16px;
+  }
+}
